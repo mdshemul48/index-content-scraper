@@ -6,7 +6,6 @@ from selenium.webdriver.chrome.service import Service
 
 
 def fetch_content(url: str) -> bytes:
-
     options = Options()
     options.headless = True
     driver = webdriver.Chrome(
