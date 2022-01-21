@@ -1,6 +1,3 @@
-from flask import request
-
-
 import requests
 
 
