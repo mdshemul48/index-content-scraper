@@ -1,4 +1,6 @@
 from scraper import Scraper
+from util import create_series_publish_table
+
 from flask import Flask, request, Response
 import json
 
@@ -17,9 +19,9 @@ def getSeriesCode():
         scraper = Scraper(requestLink)
         scraper.fetch_folder_info()
         seriesInfo = scraper.fetch_folder_item()
-
+        publish_code = create_series_publish_table(seriesInfo)
         return Response(
-            json.dumps({"code": series_pub_code}),
+            json.dumps({"code": publish_code}),
             status=200,
             mimetype="application/json",
         )
