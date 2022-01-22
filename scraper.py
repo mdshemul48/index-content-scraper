@@ -18,14 +18,14 @@ class Scraper:
             service=Service(ChromeDriverManager().install()), options=options
         )
         self.driver.get(url)
-        sleep(2)
+        sleep(1)
         self.main_page_content = self.driver.page_source
         self.domain = "http://" + urlparse(url).netloc
         self.folder_link = url
 
     def fetch_list(self, link: str, item_type: str) -> list:
         self.driver.get(link)
-        sleep(2)
+        sleep(1)
         html_tree = BeautifulSoup(self.driver.page_source, "html.parser")
         main_content_area = html_tree.find("div", {"id": "content"})
         folders_soup = main_content_area.find_all("li", {"class": f"item {item_type}"})
