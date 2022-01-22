@@ -19,6 +19,7 @@ def getSeriesCode():
         scraper = Scraper(requestLink)
         scraper.fetch_folder_info()
         seriesInfo = scraper.fetch_folder_item()
+        scraper.close()
         publish_code = create_series_publish_table(seriesInfo)
         return Response(
             json.dumps({"code": publish_code}),
@@ -40,6 +41,7 @@ def get_game_publish_code():
         requestLink = request.args["reqLink"]
         scraper = Scraper(requestLink)
         files = scraper.fetch_root_file()
+        scraper.close()
         publish_code = create_game_publish_table(files)
         return Response(
             json.dumps({"code": publish_code}),
