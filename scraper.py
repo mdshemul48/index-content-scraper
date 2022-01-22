@@ -8,6 +8,7 @@ from bs4 import BeautifulSoup
 
 class Scraper:
     folders = []
+    root_files = []
 
     def __init__(self, domain: str, url: str) -> None:
         options = Options()
@@ -44,17 +45,23 @@ class Scraper:
             folder["items"] = self.fetch_list(folder["link"], "file")
         return self.folders
 
+    def fetch_root_file(self):
+        self.root_files = self.fetch_list(self.folder_link, "file")
+        print(self.root_files)
+        return self.root_files
+
     def close(self):
         self.driver.close()
 
 
 def main():
-    current_domain = "http://ftp4.circleftp.net"
-    url_link = "http://ftp4.circleftp.net/FILE/English%20%26%20Foreign%20TV%20Series/Friends%20%28TV%20Series%201994-2004%29"
+    current_domain = "http://ftp1.circleftp.net"
+    url_link = "http://ftp1.circleftp.net/SERVER-1/DRIVE-1/ftp1/PC%2C%20Consoles%20Games%20%26%20Mods/PC%20Game%20Backup/A%20Way%20Out%20%28Steam%20Backup%20February%2025%2C%202021%29/"
 
     scraper = Scraper(current_domain, url_link)
-    scraper.fetch_folder_info()
-    print(scraper.fetch_folder_item())
+    # scraper.fetch_folder_info()
+    # print(scraper.fetch_folder_item())
+    scraper.fetch_root_file()
     scraper.close()
 
 
