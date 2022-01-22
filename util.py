@@ -21,9 +21,9 @@ def create_series_publish_table(folders: list) -> str:
                 series_pub_code += f"\n<tr><td>{episode_obj['title']}.S{str(episode_obj['season'])}.E{str(episode_obj['episode'])}</td><td><a href='{episode['link']}'>Download</a></td></tr>"
             except:
                 series_pub_code += f"\n<tr><td>{episode['title']}</td><td><a href='{episode['link']}'>Download</a></td></tr>"
-            series_pub_code += f"\n</tbody></table>"
-            series_pub_code += f"\n[/su_tab]"
-        series_pub_code += f"\n[/su_tabs]"
+        series_pub_code += f"\n</tbody></table>"
+        series_pub_code += f"\n[/su_tab]"
+    series_pub_code += f"\n[/su_tabs]"
 
     return series_pub_code
 
