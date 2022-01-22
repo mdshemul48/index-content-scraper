@@ -11,7 +11,7 @@ class Scraper:
 
     def __init__(self, domain: str, url: str) -> None:
         options = Options()
-        options.headless = False
+        options.headless = True
         self.driver = webdriver.Chrome(
             service=Service(ChromeDriverManager().install()), options=options
         )
