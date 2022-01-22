@@ -4,13 +4,14 @@ from selenium.webdriver.chrome.options import Options
 from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.service import Service
 from bs4 import BeautifulSoup
+from urllib.parse import urlparse
 
 
 class Scraper:
     folders = []
     root_files = []
 
-    def __init__(self, domain: str, url: str) -> None:
+    def __init__(self, url: str) -> None:
         options = Options()
         options.headless = True
         self.driver = webdriver.Chrome(
@@ -19,7 +20,7 @@ class Scraper:
         self.driver.get(url)
         sleep(2)
         self.main_page_content = self.driver.page_source
-        self.domain = domain
+        self.domain = "http://" + urlparse(url).netloc
         self.folder_link = url
 
     def fetch_list(self, link: str, item_type: str) -> list:
@@ -55,10 +56,9 @@ class Scraper:
 
 
 def main():
-    current_domain = "http://ftp1.circleftp.net"
     url_link = "http://ftp1.circleftp.net/SERVER-1/DRIVE-1/ftp1/PC%2C%20Consoles%20Games%20%26%20Mods/PC%20Game%20Backup/A%20Way%20Out%20%28Steam%20Backup%20February%2025%2C%202021%29/"
 
-    scraper = Scraper(current_domain, url_link)
+    scraper = Scraper(url_link)
     # scraper.fetch_folder_info()
     # print(scraper.fetch_folder_item())
     scraper.fetch_root_file()
