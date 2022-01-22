@@ -48,7 +48,6 @@ class Scraper:
 
     def fetch_root_file(self):
         self.root_files = self.fetch_list(self.folder_link, "file")
-        print(self.root_files)
         return self.root_files
 
     def close(self):

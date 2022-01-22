@@ -26,3 +26,25 @@ def create_series_publish_table(folders: list) -> str:
         series_pub_code += f"\n[/su_tabs]"
 
     return series_pub_code
+
+
+def create_game_publish_table(folder: list) -> str:
+    game_publish_code = """
+    [su_tabs]
+    [su_tab title="All Parts" disabled="no" anchor="" url="" target="blank" class="btnplayvid"]
+    <table style="height: 247px;" width="459">
+    <tbody>
+    <tr>
+    <th>Parts</th>
+    <th>Download URL</th>
+    </tr>"""
+
+    for item in folder:
+        game_publish_code += f"<tr><td>{item['title'][:-4]}</td><td><a href='{item['link']}'>Download</a></td></tr>"
+
+    game_publish_code += """
+    </tbody>
+    </table>
+    [/su_tab]
+    [/su_tabs]"""
+    return game_publish_code
